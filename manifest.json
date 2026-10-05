@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Let's Game",
+  "version": "1.4.0",
+  "description": "Créez des équipes, suivez les scores et célébrez le podium.",
+  "permissions": ["storage"],
+  "action": {
+    "default_title": "Ouvrir Let's Game",
+    "default_popup": "launch.html",
+    "default_icon": {
+      "16": "assets/icon-16.png",
+      "32": "assets/icon-32.png"
+    }
+  },
+  "icons": {
+    "16": "assets/icon-16.png",
+    "32": "assets/icon-32.png",
+    "48": "assets/icon-48.png",
+    "128": "assets/icon-128.png"
+  },
+  "options_ui": {
+    "page": "settings.html",
+    "open_in_tab": true
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "lets-game@lets-game.local",
+      "strict_min_version": "128.0"
+    }
+  }
+}

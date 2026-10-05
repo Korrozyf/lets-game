@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6fb">
+  <title>La partie · Let's Game</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="core.js" defer></script>
+  <script src="game.js" defer></script>
+</head>
+<body class="game-page">
+  <div class="app-shell game-shell">
+    <header class="topbar">
+      <a class="brand" href="game.html" aria-label="Let's Game, partie en cours">
+        <span class="brand-mark" aria-hidden="true">🎉</span>
+        <span>let's <strong>game</strong></span>
+      </a>
+      <a class="button button-icon settings-link" href="settings.html" aria-label="Accéder aux paramètres des équipes" title="Paramètres des équipes">
+        <span aria-hidden="true">⚙</span><span class="settings-link-label">Paramètres</span>
+      </a>
+    </header>
+
+    <main>
+      <section class="game-heading">
+        <p class="eyebrow">À VOUS DE JOUER</p>
+        <h1>La partie est lancée <span aria-hidden="true">✨</span></h1>
+        <p class="intro-copy">Comptez les points et encouragez votre équipe préférée.</p>
+      </section>
+
+      <section id="teamsGrid" class="teams-grid" aria-label="Équipes et scores"></section>
+      <section id="emptyGame" class="empty-state" hidden>
+        <span class="empty-emoji" aria-hidden="true">👋</span>
+        <h2>Pas encore d’équipe</h2>
+        <p>Ajoutez au moins une équipe pour pouvoir lancer la partie.</p>
+        <a class="button button-primary" href="settings.html">Configurer les équipes</a>
+      </section>
+
+      <div class="game-footer">
+        <p class="game-hint"><span aria-hidden="true">💡</span> Les scores peuvent passer sous zéro.</p>
+        <button id="finishButton" class="button button-primary finish-button" type="button">
+          Terminer la partie <span aria-hidden="true">🏆</span>
+        </button>
+      </div>
+    </main>
+
+    <footer class="site-footer">Chaque point compte. Même les points négatifs.</footer>
+  </div>
+</body>
+</html>

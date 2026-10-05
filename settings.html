@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6fb">
+  <title>Paramètres des équipes · Let's Game</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="core.js" defer></script>
+  <script src="settings.js" defer></script>
+</head>
+<body class="settings-page">
+  <div class="app-shell settings-shell">
+    <header class="topbar">
+      <a class="brand" href="game.html" aria-label="Let's Game, afficher la partie">
+        <span class="brand-mark" aria-hidden="true">🎉</span>
+        <span>let's <strong>game</strong></span>
+      </a>
+      <span class="topbar-note">Préparez vos équipes</span>
+    </header>
+
+    <main>
+      <div class="settings-reset-row">
+        <button id="resetButton" class="button button-danger" type="button">
+          <span aria-hidden="true">↺</span> Réinitialiser la configuration
+        </button>
+      </div>
+
+      <section class="page-heading">
+        <p class="eyebrow">AVANT DE JOUER</p>
+        <h1>Les équipes</h1>
+        <p class="intro-copy">Composez votre équipe de choc : donnez-lui un nom, un sourire et sa couleur.</p>
+      </section>
+
+      <section class="team-editor-section" aria-labelledby="teamSectionTitle">
+        <div class="section-heading">
+          <div>
+            <h2 id="teamSectionTitle">Votre partie</h2>
+            <p class="section-subtitle"><span id="teamCount">0 équipe</span> · vos choix restent enregistrés sur cet appareil</p>
+          </div>
+          <button id="addTeamButton" class="button button-secondary" type="button">
+            <span aria-hidden="true">＋</span> Ajouter une équipe
+          </button>
+        </div>
+
+        <div id="teamsList" class="team-editor-list" aria-live="polite"></div>
+      </section>
+
+      <div class="settings-footer">
+        <p id="saveStatus" class="save-status" role="status" aria-live="polite"></p>
+        <div class="settings-actions">
+          <button id="saveButton" class="button button-secondary" type="button">Enregistrer les paramètres</button>
+          <button id="startButton" class="button button-primary" type="button">
+            Lancer une nouvelle partie <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">Simple, joyeux et prêt à jouer.</footer>
+  </div>
+</body>
+</html>

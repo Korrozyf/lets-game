@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6fb">
+  <title>Le podium · Let's Game</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="core.js" defer></script>
+  <script src="podium.js" defer></script>
+</head>
+<body class="podium-page">
+  <div class="app-shell podium-shell">
+    <header class="topbar">
+      <a class="brand" href="game.html" aria-label="Let's Game, afficher la partie">
+        <span class="brand-mark" aria-hidden="true">🎉</span>
+        <span>let's <strong>game</strong></span>
+      </a>
+      <a class="button button-icon settings-link" href="settings.html" aria-label="Accéder aux paramètres des équipes" title="Paramètres des équipes">
+        <span aria-hidden="true">⚙</span><span class="settings-link-label">Paramètres</span>
+      </a>
+    </header>
+
+    <main>
+      <section class="podium-heading">
+        <p class="eyebrow">FIN DE PARTIE</p>
+        <h1>Bravo à toutes les équipes !</h1>
+        <p class="intro-copy">Voici les trois meilleurs scores de la partie.</p>
+      </section>
+
+      <section id="podium" class="podium" aria-label="Podium des équipes"></section>
+      <p class="tie-note"><span aria-hidden="true">🤝</span> En cas d'égalité, les équipes partagent la même marche.</p>
+
+      <div class="podium-actions">
+        <a class="button button-secondary" href="game.html">← Revoir les scores</a>
+        <button id="replayButton" class="button button-primary" type="button">Rejouer <span aria-hidden="true">↻</span></button>
+      </div>
+    </main>
+
+    <footer class="site-footer">À très bientôt pour une revanche !</footer>
+  </div>
+</body>
+</html>

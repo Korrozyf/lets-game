@@ -1,0 +1,7 @@
+# Generated browser-extension packages
+/dist/
+
+# Local/editor files
+.DS_Store
+*.swp
+*.swo
