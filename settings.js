@@ -56,23 +56,23 @@
     const title = makeElement('div', 'team-editor-title');
     const preview = makeElement('span', 'editor-logo-preview', team.emoji);
     preview.setAttribute('aria-hidden', 'true');
-    const heading = makeElement('h3', '', `Équipe ${index + 1}`);
+    const heading = makeElement('h3', '', `Team ${index + 1}`);
     heading.style.margin = '0';
     title.append(preview, heading);
 
-    const remove = makeElement('button', 'remove-team', 'Supprimer');
+    const remove = makeElement('button', 'remove-team', 'Remove');
     remove.type = 'button';
-    remove.setAttribute('aria-label', `Supprimer l’équipe ${team.name || index + 1}`);
+    remove.setAttribute('aria-label', `Remove team ${team.name || index + 1}`);
     remove.addEventListener('click', () => {
       teams = teams.filter((item) => item.id !== team.id);
       renderTeams();
-      setStatus('Suppression en attente d’enregistrement.', 'pending');
+      setStatus('Removal pending. Save to apply your changes.', 'pending');
     });
     head.append(title, remove);
 
     const fields = makeElement('div', 'editor-fields');
     const nameField = makeElement('div', 'team-name-field');
-    const nameLabel = makeElement('label', 'field-label', 'Nom de l’équipe');
+    const nameLabel = makeElement('label', 'field-label', 'Team name');
     const nameControl = makeElement('div', 'team-name-control');
     const input = makeElement('input', 'team-name-input');
     const inputId = `team-name-${team.id}`;
@@ -81,7 +81,7 @@
     input.type = 'text';
     input.maxLength = 32;
     input.value = team.name;
-    input.placeholder = 'Ex. Les Champions';
+    input.placeholder = 'e.g. The Champions';
     input.setAttribute('autocomplete', 'off');
     input.setAttribute('aria-haspopup', 'listbox');
     input.setAttribute('aria-controls', `team-name-options-${team.id}`);
@@ -89,16 +89,16 @@
 
     const toggleSuggestions = makeElement('button', 'suggestions-toggle', '▾');
     toggleSuggestions.type = 'button';
-    toggleSuggestions.setAttribute('aria-label', 'Afficher les noms d’équipe proposés');
+    toggleSuggestions.setAttribute('aria-label', 'Show suggested team names');
     toggleSuggestions.setAttribute('aria-controls', `team-name-options-${team.id}`);
     toggleSuggestions.setAttribute('aria-expanded', 'false');
     toggleSuggestions.setAttribute('aria-haspopup', 'listbox');
-    toggleSuggestions.setAttribute('title', 'Afficher les noms proposés');
+    toggleSuggestions.setAttribute('title', 'Show suggestions');
 
     const suggestionMenu = makeElement('div', 'team-name-suggestions');
     suggestionMenu.id = `team-name-options-${team.id}`;
     suggestionMenu.setAttribute('role', 'listbox');
-    suggestionMenu.setAttribute('aria-label', 'Noms d’équipe proposés');
+    suggestionMenu.setAttribute('aria-label', 'Suggested team names');
     suggestionMenu.hidden = true;
 
     function renderNameOptions() {
@@ -110,10 +110,10 @@
         option.addEventListener('click', () => {
           team.name = name;
           input.value = name;
-          remove.setAttribute('aria-label', `Supprimer l’équipe ${team.name || index + 1}`);
+          remove.setAttribute('aria-label', `Remove team ${team.name || index + 1}`);
           setSuggestionsOpen(false);
           input.focus();
-          setStatus('Modifications en attente d’enregistrement.', 'pending');
+          setStatus('Changes pending. Save to keep them.', 'pending');
         });
         return option;
       });
@@ -129,9 +129,9 @@
 
     input.addEventListener('input', () => {
       team.name = input.value;
-      remove.setAttribute('aria-label', `Supprimer l’équipe ${team.name || index + 1}`);
+      remove.setAttribute('aria-label', `Remove team ${team.name || index + 1}`);
       if (!suggestionMenu.hidden) renderNameOptions();
-      setStatus('Modifications en attente d’enregistrement.', 'pending');
+      setStatus('Changes pending. Save to keep them.', 'pending');
     });
     input.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowDown') {
@@ -157,10 +157,10 @@
     nameField.append(nameLabel, nameControl);
 
     const logoField = makeElement('div');
-    const logoLabel = makeElement('span', 'field-label', 'Logo sourire');
+    const logoLabel = makeElement('span', 'field-label', 'Team logo');
     const logoChoices = makeElement('div', 'logo-options');
     logoChoices.setAttribute('role', 'group');
-    logoChoices.setAttribute('aria-label', `Choisir le logo de l’équipe ${index + 1}`);
+    logoChoices.setAttribute('aria-label', `Choose the logo for team ${index + 1}`);
     for (const logo of Core.LOGOS) {
       const choice = makeElement('button', 'logo-choice', logo.emoji);
       choice.type = 'button';
@@ -170,17 +170,17 @@
       choice.addEventListener('click', () => {
         team.emoji = logo.emoji;
         renderTeams();
-        setStatus('Modifications en attente d’enregistrement.', 'pending');
+        setStatus('Changes pending. Save to keep them.', 'pending');
       });
       logoChoices.append(choice);
     }
     logoField.append(logoLabel, logoChoices);
 
     const colorField = makeElement('div');
-    const colorLabel = makeElement('span', 'field-label', 'Couleur de l’équipe');
+    const colorLabel = makeElement('span', 'field-label', 'Team colour');
     const colorChoices = makeElement('div', 'color-options');
     colorChoices.setAttribute('role', 'group');
-    colorChoices.setAttribute('aria-label', `Choisir la couleur de l’équipe ${index + 1}`);
+    colorChoices.setAttribute('aria-label', `Choose the colour for team ${index + 1}`);
     for (const color of Core.COLORS) {
       const choice = makeElement('button', 'color-choice');
       choice.type = 'button';
@@ -195,7 +195,7 @@
       choice.addEventListener('click', () => {
         team.color = color.hex;
         renderTeams();
-        setStatus('Modifications en attente d’enregistrement.', 'pending');
+        setStatus('Changes pending. Save to keep them.', 'pending');
       });
       colorChoices.append(choice);
     }
@@ -208,7 +208,7 @@
 
   function renderTeams() {
     elements.teamsList.replaceChildren(...teams.map(makeTeamCard));
-    elements.count.textContent = `${teams.length} / ${Core.MAX_TEAMS} équipe${teams.length === 1 ? '' : 's'}`;
+    elements.count.textContent = `${teams.length} / ${Core.MAX_TEAMS} team${teams.length === 1 ? '' : 's'}`;
     elements.start.disabled = teams.length === 0 || busy;
     elements.reset.disabled = busy;
     elements.save.disabled = busy;
@@ -216,8 +216,8 @@
   }
 
   function suggestedName() {
-    const names = new Set(teams.map((team) => team.name.trim().toLocaleLowerCase('fr')));
-    return Core.NAME_SUGGESTIONS.find((name) => !names.has(name.toLocaleLowerCase('fr')))
+    const names = new Set(teams.map((team) => team.name.trim().toLocaleLowerCase('en-GB')));
+    return Core.NAME_SUGGESTIONS.find((name) => !names.has(name.toLocaleLowerCase('en-GB')))
       || Core.NAME_SUGGESTIONS[teams.length % Core.NAME_SUGGESTIONS.length];
   }
 
@@ -231,7 +231,7 @@
       color: Core.COLORS[index % Core.COLORS.length].hex
     });
     renderTeams();
-    setStatus('Nouvelle équipe ajoutée. Enregistrez pour conserver les changements.', 'pending');
+    setStatus('New team added. Save to keep your changes.', 'pending');
     const inputs = elements.teamsList.querySelectorAll('.team-name-input');
     inputs[inputs.length - 1]?.focus();
     inputs[inputs.length - 1]?.select();
@@ -240,7 +240,7 @@
   elements.reset.addEventListener('click', async () => {
     if (busy) return;
     const confirmed = window.confirm(
-      'Effacer les équipes personnalisées et rétablir les 2 équipes de base ? Les scores seront également remis à zéro.'
+      'Remove custom teams and restore the 2 default teams? Scores will also be reset to zero.'
     );
     if (!confirmed) return;
 
@@ -250,10 +250,10 @@
       const state = await mutateState({ type: Core.MESSAGE_TYPES.resetState });
       teams = state.teams;
       renderTeams();
-      setStatus('Configuration de base restaurée : 2 équipes, scores remis à zéro.');
+      setStatus('Default setup restored: 2 teams; scores reset to zero.');
     } catch (error) {
       console.error('Could not reset team settings', error);
-      setStatus('Réinitialisation impossible. Réessayez.', 'error');
+      setStatus('Could not reset settings. Please try again.', 'error');
     } finally {
       busy = false;
       renderTeams();
@@ -266,10 +266,10 @@
     renderTeams();
     try {
       await saveState(false);
-      setStatus('Paramètres enregistrés !');
+      setStatus('Settings saved!');
     } catch (error) {
       console.error('Could not save team settings', error);
-      setStatus('Enregistrement impossible. Réessayez.', 'error');
+      setStatus('Could not save settings. Please try again.', 'error');
     } finally {
       busy = false;
       renderTeams();
@@ -285,7 +285,7 @@
       window.location.assign('game.html');
     } catch (error) {
       console.error('Could not start the game', error);
-      setStatus('Impossible de démarrer. Vérifiez les paramètres et réessayez.', 'error');
+      setStatus('Could not start the game. Check your settings and try again.', 'error');
       busy = false;
       renderTeams();
     }
@@ -298,7 +298,7 @@
       renderTeams();
     } catch (error) {
       console.error('Could not load team settings', error);
-      setStatus('Impossible de lire les paramètres de cette extension.', 'error');
+      setStatus('Could not read this extension’s settings.', 'error');
     }
   })();
 })();

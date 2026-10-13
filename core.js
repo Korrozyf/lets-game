@@ -10,33 +10,33 @@
   });
   const MAX_TEAMS = 8;
   const NAME_SUGGESTIONS = [
-    'Les Comètes',
-    'Les Renards',
-    'Les Éclairs',
-    'Les Explorateurs',
-    'Les Lamas',
-    'Les Phénix',
-    'Les Robots',
-    'Les Tigres'
+    'The Comets',
+    'The Foxes',
+    'The Lightning',
+    'The Explorers',
+    'The Llamas',
+    'The Phoenixes',
+    'The Robots',
+    'The Tigers'
   ];
   const LOGOS = [
-    { emoji: '😀', label: 'Sourire' },
-    { emoji: '😎', label: 'Lunettes de soleil' },
-    { emoji: '🤓', label: 'Intello' },
-    { emoji: '🥳', label: 'Fête' },
-    { emoji: '😺', label: 'Chat heureux' },
+    { emoji: '😀', label: 'Smile' },
+    { emoji: '😎', label: 'Sunglasses' },
+    { emoji: '🤓', label: 'Nerd' },
+    { emoji: '🥳', label: 'Party' },
+    { emoji: '😺', label: 'Happy cat' },
     { emoji: '🤖', label: 'Robot' },
-    { emoji: '🥸', label: 'Déguisement' },
-    { emoji: '😜', label: 'Clin d’œil' }
+    { emoji: '🥸', label: 'Disguise' },
+    { emoji: '😜', label: 'Winking face' }
   ];
   const COLORS = [
-    { hex: '#c2185b', label: 'Framboise' },
-    { hex: '#e65100', label: 'Mandarine' },
-    { hex: '#f9a825', label: 'Soleil' },
-    { hex: '#2e7d32', label: 'Émeraude' },
-    { hex: '#00897b', label: 'Lagune' },
-    { hex: '#1565c0', label: 'Océan' },
-    { hex: '#6a1b9a', label: 'Améthyste' },
+    { hex: '#c2185b', label: 'Raspberry' },
+    { hex: '#e65100', label: 'Tangerine' },
+    { hex: '#f9a825', label: 'Sunshine' },
+    { hex: '#2e7d32', label: 'Emerald' },
+    { hex: '#00897b', label: 'Lagoon' },
+    { hex: '#1565c0', label: 'Ocean' },
+    { hex: '#6a1b9a', label: 'Amethyst' },
     { hex: '#455a64', label: 'Graphite' }
   ];
   const LEGACY_COLORS = new Map([
@@ -52,9 +52,9 @@
 
   function getAlternativeNames(currentName) {
     const selected = typeof currentName === 'string'
-      ? currentName.trim().toLocaleLowerCase('fr')
+      ? currentName.trim().toLocaleLowerCase('en-GB')
       : '';
-    return NAME_SUGGESTIONS.filter((name) => name.toLocaleLowerCase('fr') !== selected);
+    return NAME_SUGGESTIONS.filter((name) => name.toLocaleLowerCase('en-GB') !== selected);
   }
 
   function createDefaultState() {
@@ -113,7 +113,7 @@
     const ordered = teams.map((team) => ({
       ...team,
       score: Number.isSafeInteger(scores && scores[team.id]) ? scores[team.id] : 0
-    })).sort((a, b) => b.score - a.score || a.name.localeCompare(b.name, 'fr'));
+    })).sort((a, b) => b.score - a.score || a.name.localeCompare(b.name, 'en-GB'));
 
     const groups = [];
     for (const team of ordered) {

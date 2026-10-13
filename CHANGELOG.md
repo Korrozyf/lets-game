@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.3
+
+- Translated the extension interface, accessibility text, default team names, documentation, and developer instructions into English.
+- Set page language and locale-sensitive formatting and sorting to English (United Kingdom).
+- No changes to gameplay, scoring, or state serialization.
+
 ## 1.4.2
 
 - Centralized game-state writes in the background context and serialized updates to prevent score changes from being lost across open game tabs.

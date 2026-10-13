@@ -6,8 +6,8 @@
   const podium = document.querySelector('#podium');
   const replay = document.querySelector('#replayButton');
   const medals = ['🥇', '🥈', '🥉'];
-  const placeNames = ['Première place', 'Deuxième place', 'Troisième place'];
-  const scoreFormatter = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 });
+  const placeNames = ['First place', 'Second place', 'Third place'];
+  const scoreFormatter = new Intl.NumberFormat('en-GB', { maximumFractionDigits: 0 });
   let state = Core.createDefaultState();
 
   function render() {
@@ -53,7 +53,7 @@
       } else {
         const empty = document.createElement('p');
         empty.className = 'podium-empty';
-        empty.textContent = 'Aucune équipe sur cette marche';
+        empty.textContent = 'No teams in this place';
         column.append(empty);
       }
       podium.append(column);

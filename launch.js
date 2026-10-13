@@ -10,6 +10,6 @@
     window.close();
   }).catch((error) => {
     console.warn('Could not open a game tab automatically', error);
-    document.querySelector('body').insertAdjacentText('beforeend', ' Cliquez sur le lien pour continuer.');
+    document.querySelector('body').insertAdjacentText('beforeend', ' Click the link to continue.');
   });
 })();

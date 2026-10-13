@@ -19,12 +19,25 @@ test('the eight preset team colors are distinct and visually separated', () => {
   assert.ok(closestPairDistance > 60, `closest RGB distance was ${closestPairDistance}`);
 });
 
+test('default team names, logo labels, and colour labels are in English', () => {
+  assert.deepEqual(Core.NAME_SUGGESTIONS, [
+    'The Comets', 'The Foxes', 'The Lightning', 'The Explorers',
+    'The Llamas', 'The Phoenixes', 'The Robots', 'The Tigers'
+  ]);
+  assert.deepEqual(Core.LOGOS.map(({ label }) => label), [
+    'Smile', 'Sunglasses', 'Nerd', 'Party', 'Happy cat', 'Robot', 'Disguise', 'Winking face'
+  ]);
+  assert.deepEqual(Core.COLORS.map(({ label }) => label), [
+    'Raspberry', 'Tangerine', 'Sunshine', 'Emerald', 'Lagoon', 'Ocean', 'Amethyst', 'Graphite'
+  ]);
+});
+
 test('name suggestions show alternatives despite a selected or custom team name', () => {
-  const selected = '  LES COMÈTES  ';
+  const selected = '  THE COMETS  ';
   const alternatives = Core.getAlternativeNames(selected);
   assert.equal(alternatives.length, 7);
-  assert.ok(!alternatives.includes('Les Comètes'));
-  assert.deepEqual(Core.getAlternativeNames('Mon équipe personnalisée'), Core.NAME_SUGGESTIONS);
+  assert.ok(!alternatives.includes('The Comets'));
+  assert.deepEqual(Core.getAlternativeNames('My custom team'), Core.NAME_SUGGESTIONS);
   assert.deepEqual(Core.getAlternativeNames(''), Core.NAME_SUGGESTIONS);
 });
 
@@ -61,18 +74,18 @@ test('normalization limits saved teams to eight', () => {
 test('normalization retains negative scores and ignores scores for deleted teams', () => {
   const state = Core.normalizeState({
     teams: [
-      { id: 'one', name: '  Les A  ', emoji: '😀', color: '#9d174d' },
-      { id: 'two', name: 'Les B', emoji: '🤖', color: '#166534' }
+      { id: 'one', name: '  Team A  ', emoji: '😀', color: '#9d174d' },
+      { id: 'two', name: 'Team B', emoji: '🤖', color: '#166534' }
     ],
     scores: { one: -4, two: 2, old: 99 }
   });
   assert.deepEqual(state.scores, { one: -4, two: 2 });
-  assert.equal(state.teams[0].name, 'Les A');
+  assert.equal(state.teams[0].name, 'Team A');
 });
 
 test('normalization migrates colors saved with the previous palette', () => {
   const state = Core.normalizeState({
-    teams: [{ id: 'legacy', name: 'Ancienne équipe', emoji: '😀', color: '#6d28d9' }],
+    teams: [{ id: 'legacy', name: 'Former team', emoji: '😀', color: '#6d28d9' }],
     scores: { legacy: 3 }
   });
   assert.equal(state.teams[0].color, '#6a1b9a');
