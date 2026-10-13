@@ -2,6 +2,12 @@
   'use strict';
 
   const STORAGE_KEY = 'letsGameState';
+  const MESSAGE_TYPES = Object.freeze({
+    updateScore: 'lets-game/update-score',
+    saveTeams: 'lets-game/save-teams',
+    resetState: 'lets-game/reset-state',
+    startNewGame: 'lets-game/start-new-game'
+  });
   const MAX_TEAMS = 8;
   const NAME_SUGGESTIONS = [
     'Les Comètes',
@@ -141,6 +147,7 @@
 
   root.LetsGameCore = {
     STORAGE_KEY,
+    MESSAGE_TYPES,
     MAX_TEAMS,
     NAME_SUGGESTIONS,
     getAlternativeNames,

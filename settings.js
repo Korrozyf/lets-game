@@ -32,14 +32,18 @@
     return Core.normalizeState(stored[Core.STORAGE_KEY]);
   }
 
+  async function mutateState(message) {
+    const response = await api.runtime.sendMessage(message);
+    if (!response?.ok) throw new Error(response?.error || 'Could not update game state.');
+    return Core.normalizeState(response.state);
+  }
+
   async function saveState(resetScores = false) {
-    const current = await readState();
-    const scores = Object.fromEntries(teams.map((team) => [
-      team.id,
-      resetScores ? 0 : (current.scores[team.id] ?? 0)
-    ]));
-    const state = Core.normalizeState({ teams, scores });
-    await api.storage.local.set({ [Core.STORAGE_KEY]: state });
+    const state = await mutateState({
+      type: Core.MESSAGE_TYPES.saveTeams,
+      teams,
+      resetScores
+    });
     teams = state.teams;
     return state;
   }
@@ -243,8 +247,7 @@
     busy = true;
     renderTeams();
     try {
-      const state = Core.createDefaultState();
-      await api.storage.local.set({ [Core.STORAGE_KEY]: state });
+      const state = await mutateState({ type: Core.MESSAGE_TYPES.resetState });
       teams = state.teams;
       renderTeams();
       setStatus('Configuration de base restaurée : 2 équipes, scores remis à zéro.');

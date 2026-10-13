@@ -122,18 +122,13 @@
   }
 
   async function changeScore(teamId, delta) {
-    const latest = await readState();
-    const team = latest.teams.find((item) => item.id === teamId);
-    if (!team) {
-      state = latest;
-      render();
-      return;
-    }
-    const score = latest.scores[teamId] ?? 0;
-    if (!Number.isSafeInteger(score + delta)) return;
-    latest.scores[teamId] = score + delta;
-    await api.storage.local.set({ [Core.STORAGE_KEY]: latest });
-    state = latest;
+    const response = await api.runtime.sendMessage({
+      type: Core.MESSAGE_TYPES.updateScore,
+      teamId,
+      delta
+    });
+    if (!response?.ok) throw new Error(response?.error || 'Could not update game state.');
+    state = Core.normalizeState(response.state);
     render();
   }
 

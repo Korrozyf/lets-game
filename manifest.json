@@ -1,9 +1,13 @@
 {
   "manifest_version": 3,
   "name": "Let's Game",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Créez des équipes, suivez les scores et célébrez le podium.",
   "permissions": ["storage"],
+  "background": {
+    "scripts": ["core.js", "background.js"],
+    "service_worker": "background.js"
+  },
   "action": {
     "default_title": "Ouvrir Let's Game",
     "default_popup": "launch.html",

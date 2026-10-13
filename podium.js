@@ -63,10 +63,10 @@
   replay.addEventListener('click', async () => {
     replay.disabled = true;
     try {
-      const stored = await api.storage.local.get(Core.STORAGE_KEY);
-      const latest = Core.normalizeState(stored[Core.STORAGE_KEY]);
-      latest.scores = Object.fromEntries(latest.teams.map((team) => [team.id, 0]));
-      await api.storage.local.set({ [Core.STORAGE_KEY]: latest });
+      const response = await api.runtime.sendMessage({
+        type: Core.MESSAGE_TYPES.startNewGame
+      });
+      if (!response?.ok) throw new Error(response?.error || 'Could not update game state.');
       window.location.assign('game.html');
     } catch (error) {
       console.error('Could not start a new game', error);

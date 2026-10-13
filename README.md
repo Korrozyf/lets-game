@@ -28,11 +28,14 @@ Pour modifier les équipes, sélectionnez **Paramètres** depuis la partie. Les 
 
 ## Installer temporairement dans Firefox
 
-1. Ouvrez `about:debugging#/runtime/this-firefox`.
-2. Cliquez sur **Charger un module complémentaire temporaire…**.
-3. Sélectionnez `manifest.json` dans le dossier de l'extension décompressé.
+1. Dans les [Releases GitHub](https://github.com/Korrozyf/lets-game/releases/latest), téléchargez le paquet Firefox `lets-game-<version>-firefox.xpi` (pas le paquet Chromium).
+2. Extrayez le fichier `.xpi` dans un dossier avec un outil d'archive. Un XPI est une archive ZIP ; si nécessaire, copiez-le sous l'extension `.zip` avant de l'extraire.
+3. Ouvrez `about:debugging#/runtime/this-firefox`, puis cliquez sur **Charger un module complémentaire temporaire…**.
+4. Dans le dossier extrait, sélectionnez `manifest.json`. Vérifiez que ce manifeste Firefox contient `background.scripts` avec `core.js` et `background.js`, et **ne contient pas** `background.service_worker`.
 
-Le fichier `.xpi` fourni est prêt pour les tests, mais n'est pas signé. Pour une installation permanente dans Firefox, l'extension doit être signée par Mozilla (par exemple en la soumettant comme module complémentaire non répertorié).
+N'utilisez pas le paquet Chromium ni le `manifest.json` source à la racine du dépôt : choisissez le manifeste contenu dans le XPI Firefox extrait. Le chargement est temporaire et doit être répété après la fermeture de Firefox.
+
+Le fichier `.xpi` fourni n'est pas signé. Pour une installation permanente dans Firefox, l'extension doit être signée par Mozilla (par exemple en la soumettant comme module complémentaire non répertorié).
 
 ## Vérifications et génération des paquets
 
@@ -45,7 +48,7 @@ Avec Node.js, Python 3 et les outils `zip` et `unzip` disponibles :
 Le script exécute les tests puis crée les paquets Chromium et Firefox dans
 `dist/`. Chaque paquet contient aussi le fichier `LICENSE`. Les paquets sont
 publiés automatiquement en pièces jointes d'une Release GitHub lorsqu'un tag
-correspondant à la version du manifeste est poussé (par exemple `v1.4.1`).
+correspondant à la version du manifeste est poussé (par exemple `v1.4.2`).
 
 ## Licence
 
