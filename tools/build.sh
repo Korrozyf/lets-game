@@ -17,7 +17,7 @@ mkdir -p dist
 CHROMIUM="dist/lets-game-${VERSION}-chromium.zip"
 FIREFOX="dist/lets-game-${VERSION}-firefox.xpi"
 rm -f "$CHROMIUM" "$FIREFOX"
-FILES="manifest.json README.md launch.html launch.js settings.html settings.js game.html game.js podium.html podium.js app.css core.js assets/icon-16.png assets/icon-32.png assets/icon-48.png assets/icon-128.png"
+FILES="LICENSE manifest.json README.md launch.html launch.js settings.html settings.js game.html game.js podium.html podium.js app.css core.js assets/icon-16.png assets/icon-32.png assets/icon-48.png assets/icon-128.png"
 # shellcheck disable=SC2086
 zip -q "$CHROMIUM" $FILES
 # shellcheck disable=SC2086

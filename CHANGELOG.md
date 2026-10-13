@@ -1,5 +1,9 @@
 # Historique des versions
 
+## 1.4.1
+
+- Licence MIT ajoutée au dépôt et incluse dans les paquets Chromium et Firefox.
+
 ## 1.4.0
 
 - Le premier lancement et la réinitialisation restaurent une configuration de deux équipes avec les scores à zéro.

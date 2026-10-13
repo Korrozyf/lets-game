@@ -1,5 +1,7 @@
 # Let's Game
 
+[![Licence MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Une extension de navigateur toute simple pour préparer des équipes, suivre les scores d'une partie et afficher le podium.
 
 ## Télécharger
@@ -40,4 +42,14 @@ Avec Node.js, Python 3 et les outils `zip` et `unzip` disponibles :
 ./tools/build.sh
 ```
 
-Le script exécute les tests puis crée les paquets Chromium et Firefox dans `dist/`. Les paquets sont publiés automatiquement en pièces jointes d'une Release GitHub lorsqu'un tag correspondant à la version du manifeste est poussé (par exemple `v1.4.0`).
+Le script exécute les tests puis crée les paquets Chromium et Firefox dans
+`dist/`. Chaque paquet contient aussi le fichier `LICENSE`. Les paquets sont
+publiés automatiquement en pièces jointes d'une Release GitHub lorsqu'un tag
+correspondant à la version du manifeste est poussé (par exemple `v1.4.1`).
+
+## Licence
+
+Le code source et les éléments originaux de ce dépôt sont distribués sous la
+licence [MIT](LICENSE). Le fichier `LICENSE` est inclus dans les paquets
+Chromium et Firefox. Les composants tiers éventuels restent soumis aux avis de
+licence qui leur sont propres.

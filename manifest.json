@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Let's Game",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Créez des équipes, suivez les scores et célébrez le podium.",
   "permissions": ["storage"],
   "action": {
